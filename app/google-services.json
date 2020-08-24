@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "258861615086",
+    "firebase_url": "https://studyattendance.firebaseio.com",
+    "project_id": "studyattendance",
+    "storage_bucket": "studyattendance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258861615086:android:739bfc8ab65e938f2ab0ff",
+        "android_client_info": {
+          "package_name": "com.application.studyattendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258861615086-a62m03tt1i7sb80q73fc0su3g9k212cl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.application.studyattendance",
+            "certificate_hash": "f8a34c1458a3b808d644743568e1eb71010b370f"
+          }
+        },
+        {
+          "client_id": "258861615086-sd9ih25jlpau1gmbtv6nl24shnanstaj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmSidRmhQR2Dm2GldkFEbZvc3jenScAns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258861615086-sd9ih25jlpau1gmbtv6nl24shnanstaj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

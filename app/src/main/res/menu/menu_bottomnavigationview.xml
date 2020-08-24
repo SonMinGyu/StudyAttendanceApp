@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id = "@+id/action_mystudy"
+        android:icon = "@drawable/mystudy2"
+        android:title = "MyStudy"
+        app:showAsAction="always" />
+    <item
+        android:id = "@+id/action_searchstudy"
+        android:icon = "@drawable/searchstudy2"
+        android:title = "SearchStudy"
+        app:showAsAction="always" />
+    <item
+        android:id = "@+id/action_setup"
+        android:icon = "@drawable/setup"
+        android:title = "SetUp"
+        app:showAsAction="always" />
+</menu>

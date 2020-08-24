@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyStudyActivity">
+
+    <FrameLayout
+        android:id="@+id/mystudyFramLayout"
+        android:layout_width="match_parent"
+        android:layout_height="605dp"
+        android:layout_above="@+id/mystudyNavigationView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="0dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/mystudyNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:layout_behavior="tech.thev.app.view.BottomNavigationBehavior"
+        app:itemBackground="@color/colorPrimary"
+        app:itemIconTint="@drawable/bottomnavigationitemcolor"
+        app:itemTextColor="@drawable/bottomnavigationtintcolor"
+        app:menu="@menu/menu_bottomnavigationview" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/createStudyButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:clickable="true"
+        app:srcCompat="@drawable/createstudy2" />
+
+    <TextView
+        android:id="@+id/menuText"
+        android:textSize="20sp"
+        android:gravity="center_vertical"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="18dp"
+        android:text="TextView" />
+    <!--
+    app:itemBackground="@color/colorPrimary"
+    app:itemIconTint="@android:color/white"
+    app:itemTextColor="@android:color/white" -->
+
+
+
+</RelativeLayout>

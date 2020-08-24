@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="인원">
+        <item>인원</item>
+        <item>2인</item>
+        <item>3인</item>
+        <item>4인</item>
+        <item>5인</item>
+        <item>6인</item>
+        <item>7인</item>
+        <item>8인</item>
+        <item>9인</item>
+        <item>10인</item>
+        <item>15인</item>
+        <item>20인</item>
+        <item>직접입력</item>
+    </string-array>
+</resources>
