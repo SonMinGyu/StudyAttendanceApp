@@ -9,7 +9,7 @@ android:layout_height="match_parent">
         android:id="@+id/constraintLayout8"
         android:layout_width="405dp"
         android:layout_height="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -20,6 +20,7 @@ android:layout_height="match_parent">
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:ems="10"
+            android:fontFamily="@font/font"
             android:hint="Study name"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,9 +34,12 @@ android:layout_height="match_parent">
             android:id="@+id/textView15"
             android:layout_width="100dp"
             android:layout_height="50dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/font"
             android:gravity="center"
             android:text="스터디 이름"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +57,7 @@ android:layout_height="match_parent">
 
     <EditText
         android:id="@+id/studyCategory"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
@@ -71,9 +76,12 @@ android:layout_height="match_parent">
         android:id="@+id/textView16"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="@font/font"
         android:gravity="center"
         android:text="카테고리"
-        android:textSize="17sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -104,6 +112,7 @@ android:layout_height="match_parent">
         android:id="@+id/writeNumber"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:fontFamily="@font/font"
         android:hint="인원"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -116,9 +125,12 @@ android:layout_height="match_parent">
         android:id="@+id/textView14"
         android:layout_width="100dp"
         android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:fontFamily="@font/font"
         android:gravity="center"
         android:text="스터디 인원"
-        android:textSize="15dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -139,6 +151,7 @@ android:layout_height="match_parent">
     <CheckBox
         android:id="@+id/offStudyCheckBox"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/font"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
         android:layout_marginLeft="0dp"
@@ -151,6 +164,7 @@ android:layout_height="match_parent">
     <CheckBox
         android:id="@+id/onStudyCheckBox"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/font"
         android:layout_height="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
@@ -176,6 +190,7 @@ android:layout_height="match_parent">
 
     <CheckBox
         android:id="@+id/notOpenStudyCheckBox"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
@@ -188,6 +203,7 @@ android:layout_height="match_parent">
 
     <CheckBox
         android:id="@+id/openStudyCheckBox"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginEnd="63dp"
@@ -213,6 +229,7 @@ android:layout_height="match_parent">
 
     <CheckBox
         android:id="@+id/selfStudyCheckBox"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginStart="50dp"
@@ -225,6 +242,7 @@ android:layout_height="match_parent">
 
     <CheckBox
         android:id="@+id/fixedStudyCheckBox"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginEnd="63dp"
@@ -251,6 +269,7 @@ android:layout_height="match_parent">
 
     <CheckBox
         android:id="@+id/missionCheckBox"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="스터디원들과 함께하는 미션 생성하기"
@@ -272,6 +291,7 @@ android:layout_height="match_parent">
 
     <CheckBox
         android:id="@+id/pushCheckBox"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="채팅방 푸시알림 허용하기"
@@ -283,14 +303,15 @@ android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="110dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginStart="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
+        android:fontFamily="@font/font"
         android:gravity="center"
         android:text="스터디 모집"
-        android:textSize="20sp"
+        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -303,6 +324,7 @@ android:layout_height="match_parent">
 
 <Button
     android:id="@+id/createStudyButton"
+    android:fontFamily="@font/font"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="스터디 생성"

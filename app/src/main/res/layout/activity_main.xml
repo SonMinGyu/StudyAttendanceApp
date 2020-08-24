@@ -17,13 +17,15 @@
 
         <EditText
             android:id="@+id/passwordText"
-            android:layout_width="wrap_content"
+            android:layout_width="212dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
             android:ems="10"
+            android:fontFamily="@font/tmoney_extra_bold"
             android:hint="비밀번호"
             android:inputType="textPassword"
+            android:textColor="#000000"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -31,6 +33,7 @@
 
         <TextView
             android:id="@+id/textView3"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PassWord"
@@ -43,6 +46,7 @@
 
     <TextView
         android:id="@+id/titleText"
+        android:fontFamily="@font/font"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_marginTop="100dp"
@@ -65,6 +69,7 @@
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
+            android:fontFamily="@font/font"
             android:layout_height="wrap_content"
             android:layout_marginStart="14dp"
             android:layout_marginLeft="14dp"
@@ -76,11 +81,12 @@
 
         <EditText
             android:id="@+id/idText"
-            android:layout_width="wrap_content"
+            android:layout_width="212dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
             android:layout_marginLeft="40dp"
             android:ems="10"
+            android:fontFamily="@font/tmoney_extra_bold"
             android:hint="이메일"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -100,6 +106,7 @@
 
         <CheckBox
             android:id="@+id/autoLoginCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -113,8 +120,11 @@
             android:id="@+id/loginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:fontFamily="@font/font"
             android:text="Login"
-            android:textSize="25sp"
+            android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/onStudyCheckBox"
@@ -124,7 +134,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="330dp"
         android:layout_height="60dp"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -134,8 +143,9 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="아직 회원이 아니세요?"
+            android:fontFamily="@font/font"
             android:gravity="center"
+            android:text="아직 회원이 아니세요?"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -145,8 +155,9 @@
             android:id="@+id/registerButton"
             android:layout_width="137dp"
             android:layout_height="50dp"
+            android:fontFamily="@font/font"
             android:text="간편 회원가입"
-            android:textSize="18sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView4"

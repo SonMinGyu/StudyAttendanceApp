@@ -13,6 +13,7 @@
 
         <EditText
             android:id="@+id/search_study_edittext"
+            android:fontFamily="@font/font"
             android:layout_width="310dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -21,6 +22,7 @@
 
         <Button
             android:id="@+id/search_study_botton"
+            android:fontFamily="@font/font"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="검색" />

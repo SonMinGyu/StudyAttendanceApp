@@ -30,7 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-                constraintLayout = (ConstraintLayout) findViewById(R.id.splashactivity_constrainlayout);
+        constraintLayout = (ConstraintLayout) findViewById(R.id.splashactivity_constrainlayout);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         /*

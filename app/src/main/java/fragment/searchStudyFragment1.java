@@ -161,7 +161,7 @@ public class searchStudyFragment1 extends Fragment {
                             Intent intent = new Intent(getActivity(), StudyPropertisActivity.class);
                             intent.putExtra("studykey", studyKey);
                             getActivity().startActivity(intent);
-                            Toast.makeText(getContext(),"클릭",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(),"클릭",Toast.LENGTH_SHORT).show();
                         }
 
                     }

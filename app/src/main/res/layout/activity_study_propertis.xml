@@ -17,6 +17,7 @@
 
         <TextView
             android:id="@+id/study_properties_studyName"
+            android:fontFamily="@font/font"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
@@ -35,6 +36,7 @@
 
         <TextView
             android:id="@+id/textView15"
+            android:fontFamily="@font/font"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:gravity="center"
@@ -58,6 +60,7 @@
 
         <TextView
             android:id="@+id/study_properties_studyCategory"
+            android:fontFamily="@font/font"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
@@ -76,6 +79,7 @@
 
         <TextView
             android:id="@+id/textView16"
+            android:fontFamily="@font/font"
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:gravity="center"
@@ -110,6 +114,7 @@
 
             <TextView
                 android:id="@+id/study_properties_number2"
+                android:fontFamily="@font/font"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -121,6 +126,7 @@
 
             <TextView
                 android:id="@+id/study_properties_number3"
+                android:fontFamily="@font/font"
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="50dp"
@@ -135,6 +141,7 @@
 
             <TextView
                 android:id="@+id/study_properties_number"
+                android:fontFamily="@font/font"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:gravity="center"
@@ -148,6 +155,7 @@
 
         <TextView
             android:id="@+id/textView14"
+            android:fontFamily="@font/font"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
@@ -174,6 +182,7 @@
 
         <CheckBox
             android:id="@+id/study_properties_offStudyCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="30dp"
@@ -188,6 +197,7 @@
 
         <CheckBox
             android:id="@+id/study_properties_onStudyCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:clickable="false"
@@ -211,6 +221,7 @@
 
         <CheckBox
             android:id="@+id/study_properties_notOpenStudyCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="30dp"
@@ -225,6 +236,7 @@
 
         <CheckBox
             android:id="@+id/study_properties_openStudyCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:clickable="false"
@@ -247,6 +259,7 @@
 
         <CheckBox
             android:id="@+id/study_properties_selfStudyCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="30dp"
@@ -261,6 +274,7 @@
 
         <CheckBox
             android:id="@+id/study_properties_fixedStudyCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:clickable="false"
@@ -309,6 +323,7 @@
 
         <CheckBox
             android:id="@+id/study_properties_pushCheckBox"
+            android:fontFamily="@font/font"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:clickable="false"
@@ -328,6 +343,7 @@
 
     <Button
         android:id="@+id/study_properties_join"
+        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
@@ -351,6 +367,7 @@
 
     <TextView
         android:id="@+id/textView13"
+        android:fontFamily="@font/font"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginTop="20dp"

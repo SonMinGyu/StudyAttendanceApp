@@ -1,16 +1,29 @@
 package fragment;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.media.SoundPool;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,6 +37,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.application.studyattendance.R;
 import com.application.studyattendance.StudyRoomActivity;
+import com.application.studyattendance.createStudyActivity;
 import com.application.studyattendance.model.CountdownModel;
 import com.application.studyattendance.model.StudyModel;
 import com.bumptech.glide.Glide;
@@ -37,8 +51,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.VIBRATOR_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
 
 public class countdownFragment extends Fragment {
 
@@ -66,6 +84,9 @@ public class countdownFragment extends Fragment {
     List<String> strings = new ArrayList<>();
     boolean isSameMemo = false;
     int bookmarkSize;
+    CheckBox soundCheckBox;
+    CheckBox vibratorCheckBox;
+    int streamId;
 
     RecyclerView recyclerView;
 
@@ -82,10 +103,32 @@ public class countdownFragment extends Fragment {
         secondText = (TextView) view.findViewById(R.id.countdown_second_text);
         memoText = (EditText) view.findViewById(R.id.fragment_countdown_memotext);
         addButton = (Button) view.findViewById(R.id.fragment_countdown_addbutton);
+        soundCheckBox = (CheckBox) view.findViewById(R.id.fragment_countdown_sound);
+        vibratorCheckBox = (CheckBox) view.findViewById(R.id.fragment_countdown_vivrator);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.fragment_countdown_recyclerview);
         recyclerView.setAdapter(new CountdownRecyclerViewAdapter());
         recyclerView.setLayoutManager(new LinearLayoutManager(inflater.getContext()));
+
+        AudioManager audioManager; // 핸드폰 소리,진동,무음 모드에 따라 선택되어있는 체크박스 달라짐
+        audioManager = (AudioManager)getActivity().getSystemService(Context.AUDIO_SERVICE);
+        switch (audioManager.getRingerMode())
+        {
+            case AudioManager.RINGER_MODE_NORMAL:
+                soundCheckBox.setChecked(true);
+                vibratorCheckBox.setChecked(false);
+                break;
+
+            case AudioManager.RINGER_MODE_VIBRATE:
+                soundCheckBox.setChecked(false);
+                vibratorCheckBox.setChecked(true);
+                break;
+
+            case AudioManager.RINGER_MODE_SILENT:
+                soundCheckBox.setChecked(false);
+                vibratorCheckBox.setChecked(false);
+                break;
+        }
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +147,12 @@ public class countdownFragment extends Fragment {
                     minuteText.setText(Integer.toString(millisMinute/60));
                     secondText.setText(Integer.toString(millisSecond));
                     startButton.setText("Start");
+                    hourText.setClickable(false);
+                    minuteText.setClickable(false);
+                    secondText.setClickable(false);
+                    hourText.setFocusable(false);
+                    minuteText.setFocusable(false);
+                    secondText.setFocusable(false);
 
                     return;
                 }
@@ -117,12 +166,12 @@ public class countdownFragment extends Fragment {
                 }
 
                 // 타이머 돌아갈때 클릭못하게
-                hourText.setFocusable(false);
-                minuteText.setFocusable(false);
-                secondText.setFocusable(false);
                 hourText.setClickable(false);
                 minuteText.setClickable(false);
                 secondText.setClickable(false);
+                hourText.setFocusable(false);
+                minuteText.setFocusable(false);
+                secondText.setFocusable(false);
 
                 // 타이머 돌아갈때 커서 안보이게
                 hourText.setCursorVisible(false);
@@ -159,12 +208,12 @@ public class countdownFragment extends Fragment {
                 secondText.setText(tempSecond);
 
                 // stop했을때는 값 수정 불가, reset 해야만 가능
-                hourText.setFocusable(false);
-                minuteText.setFocusable(false);
-                secondText.setFocusable(false);
                 hourText.setClickable(false);
                 minuteText.setClickable(false);
                 secondText.setClickable(false);
+                hourText.setFocusable(false);
+                minuteText.setFocusable(false);
+                secondText.setFocusable(false);
             }
         });
 
@@ -178,6 +227,15 @@ public class countdownFragment extends Fragment {
                     hourText.setCursorVisible(true);
                     minuteText.setCursorVisible(true);
                     secondText.setCursorVisible(true);
+                    hourText.setClickable(true);
+                    minuteText.setClickable(true);
+                    secondText.setClickable(true);
+                    hourText.setFocusable(true);
+                    minuteText.setFocusable(true);
+                    secondText.setFocusable(true);
+                    hourText.setFocusableInTouchMode(true);
+                    minuteText.setFocusableInTouchMode(true);
+                    secondText.setFocusableInTouchMode(true);
                     isCountStart = false;
                     hourText.setText(null);
                     minuteText.setText(null);
@@ -199,6 +257,15 @@ public class countdownFragment extends Fragment {
                 hourText.setCursorVisible(true);
                 minuteText.setCursorVisible(true);
                 secondText.setCursorVisible(true);
+                hourText.setClickable(true);
+                minuteText.setClickable(true);
+                secondText.setClickable(true);
+                hourText.setFocusable(true);
+                minuteText.setFocusable(true);
+                secondText.setFocusable(true);
+                hourText.setFocusableInTouchMode(true);
+                minuteText.setFocusableInTouchMode(true);
+                secondText.setFocusableInTouchMode(true);
                 isCountStart = false;
                 canReset = false;
                 hourText.setText(null);
@@ -413,17 +480,145 @@ public class countdownFragment extends Fragment {
 
         @Override
         public void onFinish() {
-            hourText.setCursorVisible(true);
-            minuteText.setCursorVisible(true);
-            secondText.setCursorVisible(true);
             hourText.setText(null);
             minuteText.setText(null);
             secondText.setText(null);
+            hourText.setCursorVisible(true);
+            minuteText.setCursorVisible(true);
+            secondText.setCursorVisible(true);
+            hourText.setClickable(true);
+            minuteText.setClickable(true);
+            secondText.setClickable(true);
+            hourText.setFocusable(true);
+            minuteText.setFocusable(true);
+            secondText.setFocusable(true);
+            hourText.setFocusableInTouchMode(true);
+            minuteText.setFocusableInTouchMode(true);
+            secondText.setFocusableInTouchMode(true);
+
             isCountStart = false;
             canReset = false;
             firstStart = true;
             startButton.setText("Start");
+
+            if(soundCheckBox.isChecked() && vibratorCheckBox.isChecked())
+            {
+                final SoundPool sound = new SoundPool(1, AudioManager.STREAM_ALARM, 0);// maxStreams, streamType, srcQuality
+                final int soundId = sound.load(getActivity(), R.raw.alram_sound_mix, 1);
+
+                sound.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                    @Override
+                    public void onLoadComplete(SoundPool soundPool, int i, int i1) {
+                        streamId = sound.play(soundId, 1.0F, 1.0F,  1,  -1,  1.0F);
+                    }
+                });
+
+                final Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                long[] pattern = {0, 1500, 1000, 1500, 1000, 1500, 1000, 1500}; // 홀수 인덱스 대기, 짝수 인덱스 진동
+                vibrator.vibrate(pattern, 0);
+
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(inflater.inflate(R.layout.activity_countdown_done, null))
+                        .setCancelable(false)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        sound.stop(streamId);
+                        vibrator.cancel();
+                        dialog.dismiss();
+                    }
+                });
+            }
+            else if(soundCheckBox.isChecked())
+            {
+                final SoundPool sound = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);// maxStreams, streamType, srcQuality
+                final int soundId = sound.load(getActivity(), R.raw.alram_sound_mix, 1);
+
+                sound.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                    @Override
+                    public void onLoadComplete(SoundPool soundPool, int i, int i1) {
+                        streamId = sound.play(soundId, 1.0F, 1.0F,  1,  -1,  1.0F);
+                    }
+                });
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(inflater.inflate(R.layout.activity_countdown_done, null))
+                        .setCancelable(false)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        sound.stop(streamId);
+                        dialog.dismiss();
+                    }
+                });
+
+
+            }
+            else if(vibratorCheckBox.isChecked()) {
+                final Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                long[] pattern = {0, 1500, 1000, 1500, 1000, 1500, 1000, 1500}; // 홀수 인덱스 대기, 짝수 인덱스 진동
+                vibrator.vibrate(pattern, 0);
+
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(inflater.inflate(R.layout.activity_countdown_done, null))
+                        .setCancelable(false)
+                        .setNegativeButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        vibrator.cancel();
+                        dialog.dismiss();
+                    }
+                });
+            }
+            else {
+                LayoutInflater inflater = getActivity().getLayoutInflater();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setView(inflater.inflate(R.layout.activity_countdown_done, null))
+                        .setCancelable(false)
+                        .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        });
+                final AlertDialog dialog = builder.create();
+                dialog.show();
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+
         }
+
     }
 
     public int calculateTime(String hour, String minute, String second)

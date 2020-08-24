@@ -622,6 +622,7 @@ public class StudyRoomActivity extends AppCompatActivity {
         studyModel1.setPlace_name(studyMode2.getPlace_name());
         studyModel1.setPlace_address(studyMode2.getPlace_address());
         studyModel1.setPlace_area(studyMode2.getPlace_area());
+        studyModel1.setStudyroom_password(studyMode2.getStudyroom_password());
     }
 
     private void getAppKeyHash() {

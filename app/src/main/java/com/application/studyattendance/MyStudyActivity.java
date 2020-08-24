@@ -15,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import fragment.searchStudyFragment;
+import fragment.setupFragment;
 import fragment.studyFragment;
 
 public class MyStudyActivity extends AppCompatActivity {
@@ -30,6 +31,16 @@ public class MyStudyActivity extends AppCompatActivity {
 
         menuText.setText("내 스터디");
         getSupportFragmentManager().beginTransaction().replace(R.id.mystudyFramLayout, new studyFragment()).commit();
+
+        FloatingActionButton timerBUtton = (FloatingActionButton) findViewById(R.id.my_study_timerButton);
+        timerBUtton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyStudyActivity.this, TimerActivity.class);
+                MyStudyActivity.this.startActivity(intent);
+
+            }
+        });
 
         FloatingActionButton createStudyButton = (FloatingActionButton) findViewById(R.id.createStudyButton);
         createStudyButton.setOnClickListener(new View.OnClickListener() {
@@ -69,6 +80,15 @@ public class MyStudyActivity extends AppCompatActivity {
                         }
 
                     case R.id.action_setup:
+                        Fragment setupFragment = getSupportFragmentManager().findFragmentById(R.id.mystudyFramLayout);
+                        if(setupFragment instanceof setupFragment) {
+                            return true;
+                        }
+                        else {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.mystudyFramLayout, new setupFragment()).commit();
+                            menuText.setText("설정");
+                            return true;
+                        }
                 }
 
                 return false;

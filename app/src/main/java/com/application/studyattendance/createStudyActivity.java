@@ -57,6 +57,7 @@ public class createStudyActivity extends Activity {
     String split;
     boolean userWrite = false;
     String getMission;
+    String studyroom_password;
     String writeNumber;
     String studyHostUid;
 
@@ -197,6 +198,49 @@ public class createStudyActivity extends Activity {
                         openStudyCheckBox.setChecked(false);
                         isOpenStudyChecked = false;
                     }
+
+                    final LinearLayout linear = (LinearLayout) View.inflate(createStudyActivity.this, R.layout.activity_study_room_password, null);
+                    final AlertDialog.Builder customDialog = new AlertDialog.Builder(createStudyActivity.this);
+                    customDialog.setView(linear)
+                            .setCancelable(false)
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            })
+                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                    final AlertDialog dialog = customDialog.create();
+                    dialog.show();
+                    dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            EditText password = (EditText) dialog.findViewById(R.id.study_room_password_editText);
+                            if(password.getText().toString().length() <= 0)
+                            {
+                                Toast.makeText(getApplicationContext(), "비밀번호를 입력하지 않으셨습니다!", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                studyroom_password = password.getText().toString();
+                                notOpenStudyCheckBox.setChecked(true);
+                                dialog.dismiss();
+                            }
+                        }
+                    });
+                    dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            notOpenStudyCheckBox.setChecked(false);
+                            dialog.dismiss();
+                        }
+                    });
+
                 }
                 if(openStudyCheckBox.isChecked())
                 {
@@ -287,36 +331,47 @@ public class createStudyActivity extends Activity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(missionCheckBox.isChecked())
                 {
-                    final LinearLayout linear = (LinearLayout) View.inflate(createStudyActivity.this, R.layout.activity_mission, null);
-                    new AlertDialog.Builder(createStudyActivity.this)
-                            .setView(linear)
+                    final LinearLayout linear2 = (LinearLayout) View.inflate(createStudyActivity.this, R.layout.activity_mission, null);
+                    final AlertDialog.Builder customDialog2 = new AlertDialog.Builder(createStudyActivity.this);
+                    customDialog2.setView(linear2)
                             .setCancelable(false)
                             .setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    EditText mission = (EditText) linear.findViewById(R.id.mission_missionText);
-                                    if(mission.getText().toString().getBytes().length <= 0)
-                                    {
-                                        //Log.d(TAG, "입력안한부분 실행");
-                                        Toast.makeText(getApplicationContext(), "미션을 입력하지 않으셨습니다!", Toast.LENGTH_SHORT).show();
-                                        missionCheckBox.setChecked(false);
-                                        dialog.dismiss();
-                                    }
-                                    else {
-                                        getMission = mission.getText().toString();
-                                        //Log.d(TAG, "입력한부분 실행");
-                                        missionCheckBox.setChecked(true);
-                                        isMissionChecked = true;
-                                        dialog.dismiss();
-                                    }
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
                                 }
                             })
                             .setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int whichButton) {
-                                    missionCheckBox.setChecked(false);
-                                    dialog.dismiss();
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
                                 }
-                            })
-                            .show();
+                            });
+                    final AlertDialog dialog2 = customDialog2.create();
+                    dialog2.show();
+                    dialog2.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            EditText mission = (EditText) dialog2.findViewById(R.id.mission_missionText);
+                            if(mission.getText().toString().length() <= 0)
+                            {
+                                Toast.makeText(getApplicationContext(), "미션을 설정하지 않으셨습니다!", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                getMission = mission.getText().toString();
+                                missionCheckBox.setChecked(true);
+                                dialog2.dismiss();
+                            }
+                        }
+                    });
+                    dialog2.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            missionCheckBox.setChecked(false);
+                            dialog2.dismiss();
+                        }
+                    });
                 }
             }
         });
@@ -395,6 +450,7 @@ public class createStudyActivity extends Activity {
                 if(notOpenStudyCheckBox.isChecked()) // 비공개 스터디체크 했으면 studyModel의 noOpenorOpen이 ture, 공개 체크했으면 false;
                 {
                     studyModel.notOpenOrOpen = true;
+                    studyModel.studyroom_password = studyroom_password;
                 }
                 else
                 {

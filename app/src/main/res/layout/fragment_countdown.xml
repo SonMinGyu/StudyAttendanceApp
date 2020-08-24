@@ -31,6 +31,7 @@
 
                 <TextView
                     android:id="@+id/textView19"
+                    android:fontFamily="@font/font"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:gravity="center"
@@ -43,6 +44,7 @@
                     android:id="@+id/countdown_hour_text"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
+                    android:fontFamily="@font/font"
                     android:ems="10"
                     android:gravity="center"
                     android:background="@null"
@@ -67,6 +69,7 @@
                     android:id="@+id/countdown_minute_text"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
+                    android:fontFamily="@font/font"
                     android:ems="10"
                     android:gravity="center"
                     android:background="@null"
@@ -79,6 +82,7 @@
 
                 <TextView
                     android:id="@+id/textView20"
+                    android:fontFamily="@font/font"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:gravity="center"
@@ -100,6 +104,7 @@
                     android:id="@+id/countdown_second_text"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
+                    android:fontFamily="@font/font"
                     android:background="@null"
                     android:textSize="40sp"
                     android:ems="10"
@@ -112,6 +117,7 @@
 
                 <TextView
                     android:id="@+id/textView21"
+                    android:fontFamily="@font/font"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
                     android:gravity="center"
@@ -132,12 +138,14 @@
                 android:id="@+id/btnStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
                 android:layout_weight="1"
                 android:text="Start" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/font"
                 android:id="@+id/btnStop"
                 android:layout_weight="1"
                 android:text = "Stop" />
@@ -145,6 +153,7 @@
             <Button
                 android:id="@+id/btnReset"
                 android:layout_width="wrap_content"
+                android:fontFamily="@font/font"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Reset" />
@@ -157,21 +166,18 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fragment_countdown_recyclerview"
                 android:layout_width="409dp"
-                android:layout_height="330dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="273dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="380dp"
                 android:layout_height="40dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="12dp"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_countdown_recyclerview"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.454"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintStart_toStartOf="parent">
 
                 <EditText
                     android:id="@+id/fragment_countdown_memotext"
@@ -179,8 +185,9 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:ems="10"
-                    android:hint="메모 (ex) 토익시험시간"
+                    android:fontFamily="@font/font"
                     android:gravity="center"
+                    android:hint="메모 (ex) 토익시험시간"
                     android:inputType="textPersonName"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -192,7 +199,42 @@
                     android:id="@+id/fragment_countdown_addbutton"
                     android:layout_width="110dp"
                     android:layout_height="match_parent"
+                    android:fontFamily="@font/font"
                     android:text="시간 추가하기"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout16"
+                android:layout_width="409dp"
+                android:layout_height="54dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <CheckBox
+                    android:id="@+id/fragment_countdown_sound"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="53dp"
+                    android:layout_marginLeft="53dp"
+                    android:fontFamily="@font/font"
+                    android:text="소리알림 켜기"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/fragment_countdown_vivrator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="53dp"
+                    android:layout_marginRight="53dp"
+                    android:fontFamily="@font/font"
+                    android:text="진동알림 켜기"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

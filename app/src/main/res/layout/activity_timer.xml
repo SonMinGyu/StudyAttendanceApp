@@ -22,6 +22,7 @@
 
         <Button
             android:id="@+id/countdown_button"
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -29,6 +30,7 @@
 
         <Button
             android:id="@+id/timer_button"
+            android:fontFamily="@font/font"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

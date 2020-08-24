@@ -39,6 +39,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:clickable="true"
+        android:backgroundTint="#FA8072"
         app:srcCompat="@drawable/createstudy2" />
 
     <TextView
@@ -53,7 +54,22 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="18dp"
+        android:fontFamily="@font/font"
         android:text="TextView" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/my_study_timerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginRight="77dp"
+        android:clickable="true"
+        android:backgroundTint="#FFA500"
+        app:srcCompat="@drawable/timer_icon2" />
     <!--
     app:itemBackground="@color/colorPrimary"
     app:itemIconTint="@android:color/white"

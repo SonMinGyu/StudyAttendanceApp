@@ -9,6 +9,7 @@
 
     <Button
         android:id="@+id/attendance_button"
+        android:fontFamily="@font/font"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="25dp"
@@ -37,6 +38,7 @@
 
         <TextView
             android:id="@+id/textView5"
+            android:fontFamily="@font/font"
             android:layout_width="73dp"
             android:layout_height="30dp"
             android:gravity="center"
@@ -52,6 +54,7 @@
             android:text="아직 출석한 스터디원이 없습니다!\n지금 출석해보세요!"
             android:textSize="13sp"
             android:visibility="gone"
+            android:fontFamily="@font/font"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -69,6 +72,7 @@
         android:text="오프라인 장소노출"
         android:textSize="15sp"
         android:visibility="gone"
+        android:fontFamily="@font/font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +88,7 @@
 
         <TextView
             android:id="@+id/study_room_study_name"
+            android:fontFamily="@font/font"
             android:layout_width="295dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -122,6 +127,7 @@
         android:text="오프라인 스터디 장소"
         android:textSize="20sp"
         android:visibility="gone"
+        android:fontFamily="@font/font"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout12" />

@@ -5,14 +5,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +56,7 @@ public class StudyPropertisActivity extends Activity {
     TextView missionText;
     TextView mission;
     TextView area;
+    String join_password;
     ConstraintLayout areaCons;
     int maximum;
 
@@ -201,25 +207,73 @@ public class StudyPropertisActivity extends Activity {
                     }
                 }
 
-                if(!(isMem) && !(thisStudyModel.getStudyTotalNumber() <= studyUsers.size()))
-                {
-                    StudyUsers studyUsers = new StudyUsers();
-                    studyUsers.user = uid;
-                    //Log.d(TAG, getIntent().getExtras().getString("studykey"));
-                    FirebaseDatabase.getInstance().getReference().child("study").child(uid).child(getIntent().getExtras()
-                            .getString("studykey")).setValue(thisStudyModel);
-                    FirebaseDatabase.getInstance().getReference().child("allStudy").child(getIntent().getExtras()
-                            .getString("studykey")).child("studyUsers").push().setValue(studyUsers);
-                    Toast.makeText(getApplicationContext(), "스터디에 가입되셨습니다.", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-                else if(isMem)
+
+                if(isMem)
                 {
                     Toast.makeText(getApplicationContext(), "이미 가입한 스터디 입니다!", Toast.LENGTH_SHORT).show();
                 }
                 else if(thisStudyModel.getStudyTotalNumber() <= studyUsers.size())
                 {
                     Toast.makeText(getApplicationContext(), "아쉽지만 스터디 정원이 다 찼습니다.", Toast.LENGTH_SHORT).show();
+                }
+                else if(!(isMem) && !(thisStudyModel.getStudyTotalNumber() <= studyUsers.size()))
+                {
+                    final LinearLayout passwordLinear = (LinearLayout) View.inflate(StudyPropertisActivity.this, R.layout.activity_join_password, null);
+                    final AlertDialog.Builder passwordCustomDialog = new AlertDialog.Builder(StudyPropertisActivity.this);
+                    passwordCustomDialog.setView(passwordLinear)
+                            .setCancelable(false)
+                            .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            })
+                            .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            });
+                    final AlertDialog passwordDialog = passwordCustomDialog.create();
+                    passwordDialog.getWindow().setGravity(Gravity.CENTER);
+                    passwordDialog.show();
+                    passwordDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            EditText password = (EditText) passwordDialog.findViewById(R.id.join_password_editText);
+                            if(password.getText().toString().length() <= 0)
+                            {
+                                Toast.makeText(getApplicationContext(), "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            else
+                            {
+                                if(thisStudyModel.getStudyroom_password().equals(password.getText().toString()))
+                                {
+                                    StudyUsers studyUsers = new StudyUsers();
+                                    studyUsers.user = uid;
+                                    //Log.d(TAG, getIntent().getExtras().getString("studykey"));
+                                    FirebaseDatabase.getInstance().getReference().child("study").child(uid).child(getIntent().getExtras()
+                                            .getString("studykey")).setValue(thisStudyModel);
+                                    FirebaseDatabase.getInstance().getReference().child("allStudy").child(getIntent().getExtras()
+                                            .getString("studykey")).child("studyUsers").push().setValue(studyUsers);
+                                    Toast.makeText(getApplicationContext(), "스터디에 가입되셨습니다.", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                                else
+                                {
+                                    Toast.makeText(getApplicationContext(), "비밀번호가 틀렸습니다!", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                        }
+                    });
+                    passwordDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            passwordDialog.dismiss();
+                        }
+                    });
                 }
 
             }
@@ -253,5 +307,6 @@ public class StudyPropertisActivity extends Activity {
         studyModel1.setPlace_name(studyMode2.getPlace_name());
         studyModel1.setPlace_address(studyMode2.getPlace_address());
         studyModel1.setPlace_area(studyMode2.getPlace_area());
+        studyModel1.setStudyroom_password(studyMode2.getStudyroom_password());
     }
 }

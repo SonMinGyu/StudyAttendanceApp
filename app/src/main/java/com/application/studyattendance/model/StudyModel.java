@@ -17,6 +17,15 @@ public class StudyModel {
     public String place_name;
     public String place_address;
     public String place_area;
+    public String studyroom_password;
+
+    public String getStudyroom_password() {
+        return studyroom_password;
+    }
+
+    public void setStudyroom_password(String studyroom_password) {
+        this.studyroom_password = studyroom_password;
+    }
 
     public String getPlace_area() {
         return place_area;
