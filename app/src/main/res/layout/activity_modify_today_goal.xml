@@ -9,20 +9,19 @@
 
 
     <TextView
-        android:id="@+id/join_password_text"
+        android:id="@+id/today_goal_text"
         android:fontFamily="@font/font"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="스터디 비밀번호를 입력하세요"
+        android:text="오늘의 목표를 입력하세요"
         android:textSize="23dp" />
 
     <EditText
-        android:id="@+id/join_password_editText"
-        android:fontFamily="@font/tmoney_extra_bold"
+        android:id="@+id/today_goal_editText"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:ems="15"
-        android:inputType="textPassword" />
+        android:fontFamily="@font/font" />
 
 </LinearLayout>

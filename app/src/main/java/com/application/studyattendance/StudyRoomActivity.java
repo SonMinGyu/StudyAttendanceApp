@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -28,6 +30,7 @@ import android.widget.Toast;
 import com.application.studyattendance.model.AttendanceModel;
 import com.application.studyattendance.model.ChatModel;
 import com.application.studyattendance.model.StudyModel;
+import com.application.studyattendance.model.TodayGoalModel;
 import com.application.studyattendance.model.UserModel;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,6 +47,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -70,12 +74,14 @@ public class StudyRoomActivity extends AppCompatActivity {
     EditText chatEditText;
     ImageButton chatSendButton;
     ImageButton timerButton;
+    ImageButton menuButton;
     boolean dateFlag = false;
 
     final String attendanceUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     private RecyclerView rankRecyclerView;
     private RecyclerView chatRecyclerView;
+    private RecyclerView todayGoalRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,16 +96,9 @@ public class StudyRoomActivity extends AppCompatActivity {
         chatEditText = (EditText) findViewById(R.id.study_room_chat_edittext);
         chatSendButton = (ImageButton) findViewById(R.id.study_room_send_button);
         timerButton = (ImageButton) findViewById(R.id.study_room_timer_button);
+        menuButton = (ImageButton) findViewById(R.id.study_room_menuButton);
 
         Intent intent = getIntent();
-
-        rankRecyclerView = (RecyclerView) findViewById(R.id.study_room_rank_recyclerview);
-        rankRecyclerView.setAdapter(new RankRecyclerViewAdapter());
-        rankRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        chatRecyclerView = (RecyclerView) findViewById(R.id.study_room_chat_recyclerview);
-        chatRecyclerView.setAdapter(new ChatRecyclerViewAdapter());
-        chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // 출석한 user의 이름을 가져오기 위한 db사용
         FirebaseDatabase.getInstance().getReference().child("users").addValueEventListener(new ValueEventListener() {
@@ -200,6 +199,14 @@ public class StudyRoomActivity extends AppCompatActivity {
                     FirebaseDatabase.getInstance().getReference().child("allStudy").child(getIntent().getExtras().getString("studykey"))
                             .child("attendance").child(getToDay()).push().setValue(attendanceModel);
                     Toast.makeText(getApplicationContext(), "출석완료!",Toast.LENGTH_SHORT).show();
+
+                    // 출석하면 출석한 사람에 대한 오늘의 목표 생성
+                    TodayGoalModel todayGoalModel = new TodayGoalModel();
+                    todayGoalModel.setUserUid(attendanceUid);
+                    todayGoalModel.setTodayGoal("");
+                    FirebaseDatabase.getInstance().getReference().child("allStudy").child(getIntent().getExtras().getString("studykey"))
+                            .child("today_goal").child(getToDay()).child(attendanceUid).setValue(todayGoalModel);
+
                 }
                 else
                 {
@@ -282,6 +289,25 @@ public class StudyRoomActivity extends AppCompatActivity {
             }
         });
 
+        menuButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        rankRecyclerView = (RecyclerView) findViewById(R.id.study_room_rank_recyclerview);
+        rankRecyclerView.setAdapter(new RankRecyclerViewAdapter());
+        rankRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        chatRecyclerView = (RecyclerView) findViewById(R.id.study_room_chat_recyclerview);
+        chatRecyclerView.setAdapter(new ChatRecyclerViewAdapter());
+        chatRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        todayGoalRecyclerView = (RecyclerView) findViewById(R.id.study_room_today_goal_recyclerView);
+        todayGoalRecyclerView.setAdapter(new TodayGoalRecyclerViewAdapter());
+        todayGoalRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     // recyclerview adapter
@@ -302,6 +328,7 @@ public class StudyRoomActivity extends AppCompatActivity {
                         attendanceModels2.add(item.getValue(AttendanceModel.class));
                     }
                     notifyDataSetChanged();
+                    rankRecyclerView.scrollToPosition(attendanceModels2.size() - 1);
                 }
 
                 @Override
@@ -559,6 +586,143 @@ public class StudyRoomActivity extends AppCompatActivity {
 
                 message_date = (TextView) view.findViewById(R.id.message_date);
                 message_date_linearLayout = (LinearLayout) view.findViewById(R.id.message_date_linear);
+            }
+        }
+    }
+
+    // recyclerview adapter
+    class TodayGoalRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
+    {
+        private List<TodayGoalModel> todayGoalModels = new ArrayList<>();
+        private String uid;
+
+        public TodayGoalRecyclerViewAdapter() {
+
+            FirebaseDatabase.getInstance().getReference().child("allStudy").child(getIntent().getExtras().getString("studykey"))
+                    .child("today_goal").child(getToDay()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    todayGoalModels.clear();
+                    for(DataSnapshot item :snapshot.getChildren())
+                    {
+                        todayGoalModels.add(item.getValue(TodayGoalModel.class));
+                    }
+                    notifyDataSetChanged();
+                    todayGoalRecyclerView.scrollToPosition(todayGoalModels.size() - 1);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+
+        @NonNull
+        @Override // item_studyroom을 리사이클러뷰에 연결
+        public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_today_goal,parent,false);
+            StudyRoomActivity.TodayGoalRecyclerViewAdapter.CustomViewHolder holder = new StudyRoomActivity.TodayGoalRecyclerViewAdapter.CustomViewHolder(view);
+
+            return holder;
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+            final StudyRoomActivity.TodayGoalRecyclerViewAdapter.CustomViewHolder customViewHolder = (StudyRoomActivity.TodayGoalRecyclerViewAdapter.CustomViewHolder) holder;
+
+            // 유저 이름 가져오기
+            for(int i = 0; i < userModels.size(); i++)
+            {
+                if(todayGoalModels.get(position).getUserUid().equals(userModels.get(i).userUid))
+                {
+                    customViewHolder.userName.setText(userModels.get(i).userName + "님:");
+                }
+            }
+
+            customViewHolder.userGoal.setText(todayGoalModels.get(position).getTodayGoal());
+        }
+
+        @Override
+        public int getItemCount() {
+            return (todayGoalModels != null ? todayGoalModels.size() : 0);
+        }
+
+        private class CustomViewHolder extends RecyclerView.ViewHolder {
+            public TextView userName;
+            public TextView userGoal;
+            public Button modifyButton;
+            public LinearLayout linearLayout;
+
+            public CustomViewHolder(View view) {
+                super(view);
+                userName = (TextView) view.findViewById(R.id.item_today_goal_nameText);
+                userGoal = (TextView) view.findViewById(R.id.item_today_goal_editText);
+                modifyButton = (Button) view.findViewById(R.id.item_today_goal_modifyButton);
+                linearLayout = (LinearLayout) view.findViewById(R.id.item_today_goal_linear);
+
+                modifyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION)
+                        {
+                            if(!todayGoalModels.get(position).getUserUid().equals(attendanceUid))
+                            {
+                                Toast.makeText(getApplicationContext(), "다른 스터디원의 목표는 수정할 수 없습니다!", Toast.LENGTH_SHORT).show();
+                            }
+                            else
+                            {
+                                final LinearLayout linear2 = (LinearLayout) View.inflate(StudyRoomActivity.this, R.layout.activity_modify_today_goal, null);
+                                final AlertDialog.Builder customDialog2 = new AlertDialog.Builder(StudyRoomActivity.this);
+                                customDialog2.setView(linear2)
+                                        .setCancelable(false)
+                                        .setPositiveButton("수정", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            }
+                                        })
+                                        .setNegativeButton("취소", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            }
+                                        });
+                                final AlertDialog dialog2 = customDialog2.create();
+                                dialog2.show();
+                                dialog2.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        EditText today_goal = (EditText) dialog2.findViewById(R.id.today_goal_editText);
+                                        if(today_goal.getText().toString().length() <= 0)
+                                        {
+                                            Toast.makeText(getApplicationContext(), "수정할 내용이 없습니다!", Toast.LENGTH_SHORT).show();
+                                        }
+                                        else
+                                        {
+                                            Log.d(TAG, "수정실행");
+                                            Map<String, Object> taskMap = new HashMap<String, Object>();
+                                            taskMap.put("todayGoal", today_goal.getText().toString());
+                                            FirebaseDatabase.getInstance().getReference().child("allStudy").child(getIntent().getExtras().getString("studykey"))
+                                                    .child("today_goal").child(getToDay()).child(attendanceUid).updateChildren(taskMap);
+                                            dialog2.dismiss();
+                                        }
+                                    }
+                                });
+                                dialog2.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        dialog2.dismiss();
+                                    }
+                                });
+                            }
+                        }
+
+                    }
+                });
+
             }
         }
     }

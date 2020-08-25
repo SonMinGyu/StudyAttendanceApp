@@ -21,7 +21,10 @@
         <activity
             android:name=".StudyPropertisActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.Dialog.NoActionBar" />
-        <activity android:name=".StudyRoomActivity" />
+        <activity
+            android:name=".StudyRoomActivity"
+            android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".createStudyActivity"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar" />
