@@ -1,6 +1,8 @@
 package com.application.studyattendance.model;
 
-public class StudyModel {
+import java.io.Serializable;
+
+public class StudyModel implements Serializable {
     public String studyHostUid;
     public String studyName;
     public String studyCategory;

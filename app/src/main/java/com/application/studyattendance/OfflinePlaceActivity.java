@@ -99,7 +99,7 @@ public class OfflinePlaceActivity extends Activity {
                     //에러가 발생할 수 있는 코드
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    throw new Exception(); //강제 에러 출력
+                    //throw new Exception(); //강제 에러 출력
                 }catch (Exception e) {
                     //에러시 수행
                     Toast.makeText(getApplicationContext(),"Kakao map이 다운되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -118,7 +118,7 @@ public class OfflinePlaceActivity extends Activity {
                     //에러가 발생할 수 있는 코드
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    throw new Exception(); //강제 에러 출력
+                    //throw new Exception(); //강제 에러 출력
                 }catch (Exception e) {
                     //에러시 수행
                     Toast.makeText(getApplicationContext(),"Naver map이 다운되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -136,7 +136,7 @@ public class OfflinePlaceActivity extends Activity {
                     //에러가 발생할 수 있는 코드
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     startActivity(intent);
-                    throw new Exception(); //강제 에러 출력
+                    //throw new Exception(); //강제 에러 출력
                 }catch (Exception e) {
                     //에러시 수행
                     Toast.makeText(getApplicationContext(),"Google map이 다운되어 있지 않습니다.", Toast.LENGTH_SHORT).show();

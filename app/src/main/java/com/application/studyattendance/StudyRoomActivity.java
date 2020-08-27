@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -21,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,27 +32,19 @@ import com.application.studyattendance.model.ChatModel;
 import com.application.studyattendance.model.StudyModel;
 import com.application.studyattendance.model.TodayGoalModel;
 import com.application.studyattendance.model.UserModel;
-import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Comment;
-import org.w3c.dom.Text;
-
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-
-import fragment.studyFragment;
 
 public class StudyRoomActivity extends AppCompatActivity {
 
@@ -76,6 +68,7 @@ public class StudyRoomActivity extends AppCompatActivity {
     ImageButton timerButton;
     ImageButton menuButton;
     boolean dateFlag = false;
+    FrameLayout menuFrameLayout;
 
     final String attendanceUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -97,6 +90,7 @@ public class StudyRoomActivity extends AppCompatActivity {
         chatSendButton = (ImageButton) findViewById(R.id.study_room_send_button);
         timerButton = (ImageButton) findViewById(R.id.study_room_timer_button);
         menuButton = (ImageButton) findViewById(R.id.study_room_menuButton);
+        menuFrameLayout = (FrameLayout) findViewById(R.id.study_room_framelayout);
 
         Intent intent = getIntent();
 
@@ -289,9 +283,42 @@ public class StudyRoomActivity extends AppCompatActivity {
             }
         });
 
+
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent menuIntent = new Intent(StudyRoomActivity.this, StudyRoomMenuActivity.class);
+                menuIntent.putExtra("study", getIntent().getExtras().getString("studykey"));
+                StudyRoomActivity.this.startActivity(menuIntent);
+                //overridePendingTransition(R.anim.enter_from_right, 0);
+
+
+                /* // 다이얼로그 이용
+                final ConstraintLayout linear2 = (ConstraintLayout) View.inflate(StudyRoomActivity.this, R.layout.activity_study_room_menu, null);
+                final AlertDialog.Builder customDialog2 = new AlertDialog.Builder(StudyRoomActivity.this);
+                customDialog2.setView(linear2);
+
+                final AlertDialog dialog2 = customDialog2.create();
+
+                WindowManager.LayoutParams wmlp = dialog2.getWindow().getAttributes();
+                wmlp.gravity = Gravity.TOP | Gravity.RIGHT;
+                wmlp.x = 1100;   //x position
+                wmlp.y = 500;   //y position
+                dialog2.getWindow().setAttributes(wmlp);
+
+                dialog2.show();
+
+                Display display = getWindowManager().getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+
+                Window window = dialog2.getWindow();
+                int x = (int) (size.x * 0.75);
+                int y = (int) (size.y * 1);
+
+                window.setLayout(x,y);
+                 */
+
 
             }
         });

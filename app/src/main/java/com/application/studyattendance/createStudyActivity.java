@@ -73,7 +73,6 @@ public class createStudyActivity extends Activity {
 
     FirebaseAuth firebaseAuth;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

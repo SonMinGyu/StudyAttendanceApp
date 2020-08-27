@@ -17,6 +17,16 @@
         android:background="#E0FFFF"
         tools:context=".StudyRoomActivity">
 
+        <FrameLayout
+            android:id="@+id/study_room_framelayout"
+            android:visibility="gone"
+            android:layout_width="300dp"
+            android:layout_height="690dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout12">
+
+        </FrameLayout>
+
         <Button
             android:id="@+id/attendance_button"
             android:layout_width="100dp"
@@ -27,7 +37,7 @@
             android:text="출석하기"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout11"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/study_room_study_meet_place" />
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout19" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout11"
@@ -36,7 +46,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/attendance_button"
-            app:layout_constraintTop_toBottomOf="@+id/study_room_study_meet_place">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout19">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/study_room_rank_recyclerview"
@@ -75,20 +85,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.428" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/study_room_study_meet_place"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:background="#AFEEEE"
-            android:fontFamily="@font/font"
-            android:gravity="center"
-            android:text="오프라인 장소노출"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/study_room_place_text" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout12"
@@ -226,6 +222,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout19"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/study_room_place_text">
+
+            <TextView
+                android:id="@+id/study_room_study_meet_place"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:background="#AFEEEE"
+                android:fontFamily="@font/font"
+                android:gravity="center"
+                android:text="오프라인 장소노출"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
