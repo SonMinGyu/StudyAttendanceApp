@@ -2,6 +2,7 @@ package com.application.studyattendance;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -69,6 +70,7 @@ public class StudyRoomActivity extends AppCompatActivity {
     ImageButton menuButton;
     boolean dateFlag = false;
     FrameLayout menuFrameLayout;
+    ConstraintLayout placeConstraintLayout;
 
     final String attendanceUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -91,6 +93,7 @@ public class StudyRoomActivity extends AppCompatActivity {
         timerButton = (ImageButton) findViewById(R.id.study_room_timer_button);
         menuButton = (ImageButton) findViewById(R.id.study_room_menuButton);
         menuFrameLayout = (FrameLayout) findViewById(R.id.study_room_framelayout);
+        placeConstraintLayout = (ConstraintLayout) findViewById(R.id.constraintLayout19);
 
         Intent intent = getIntent();
 
@@ -125,6 +128,7 @@ public class StudyRoomActivity extends AppCompatActivity {
                 if(studyModel.getOffOrOn() == 0 || studyModel.getOffOrOn() == 2)
                 {
                     studyPlaceText.setVisibility(View.VISIBLE);
+                    placeConstraintLayout.setVisibility(View.VISIBLE);
                     studyPlace.setVisibility(View.VISIBLE);
                     if(studyModel.place_nowOrLater) {
                         studyPlace.setText(studyModel.place_name + "\n" + studyModel.place_address);
@@ -137,6 +141,7 @@ public class StudyRoomActivity extends AppCompatActivity {
                 else
                 {
                     studyPlaceText.setVisibility(View.GONE);
+                    placeConstraintLayout.setVisibility(View.GONE);
                     studyPlace.setVisibility(View.GONE);
                 }
             }
@@ -814,6 +819,11 @@ public class StudyRoomActivity extends AppCompatActivity {
         studyModel1.setPlace_address(studyMode2.getPlace_address());
         studyModel1.setPlace_area(studyMode2.getPlace_area());
         studyModel1.setStudyroom_password(studyMode2.getStudyroom_password());
+        studyModel1.setMissionReword(studyMode2.getMissionReword());
+        studyModel1.setFine_title(studyMode2.getFine_title());
+        studyModel1.setFine(studyMode2.getFine());
+        studyModel1.setUseFine(studyMode2.isUseFine());
+        studyModel1.setFirstFineCheck(studyMode2.isFirstFineCheck());
     }
 
     private void getAppKeyHash() {

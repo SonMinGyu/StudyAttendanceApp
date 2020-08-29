@@ -12,6 +12,7 @@ public class StudyModel implements Serializable {
     public boolean selfOrFixed; // 자율 스터디체크 했으면 studyModel의 selfOrFixed가 true, 공개 체크했으면 false;
     public boolean isMission;
     public String missionText;
+    public String missionReword;
     public boolean isPush;
     public String profile;
     public String studyKey;
@@ -20,6 +21,50 @@ public class StudyModel implements Serializable {
     public String place_address;
     public String place_area;
     public String studyroom_password;
+    public String fine_title;
+    public String fine;
+    public boolean useFine;
+    public boolean firstFineCheck;
+
+    public boolean isFirstFineCheck() {
+        return firstFineCheck;
+    }
+
+    public void setFirstFineCheck(boolean Check) {
+        firstFineCheck = Check;
+    }
+
+    public boolean isUseFine() {
+        return useFine;
+    }
+
+    public void setUseFine(boolean useFine) {
+        this.useFine = useFine;
+    }
+
+    public String getFine_title() {
+        return fine_title;
+    }
+
+    public void setFine_title(String fine_title) {
+        this.fine_title = fine_title;
+    }
+
+    public String getFine() {
+        return fine;
+    }
+
+    public void setFine(String fine) {
+        this.fine = fine;
+    }
+
+    public String getMissionReword() {
+        return missionReword;
+    }
+
+    public void setMissionReword(String missionReword) {
+        this.missionReword = missionReword;
+    }
 
     public String getStudyroom_password() {
         return studyroom_password;

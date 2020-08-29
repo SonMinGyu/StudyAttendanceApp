@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_gravity="right"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="right"
     tools:context=".StudyRoomMenuActivity">
 
     <TextView
@@ -14,26 +14,25 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="스터디 정보"
         android:fontFamily="@font/font"
+        android:text="스터디 정보"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="200dp"
-        android:layout_height="371dp"
+        android:id="@+id/study_room_menu_member_recyclerView"
+        android:layout_width="190dp"
+        android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/study_room_menu_fine_recyclerView"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout20"
         android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_marginTop="22dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23">
@@ -55,46 +54,46 @@
         <TextView
             android:id="@+id/study_room_menu_modifyText"
             android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/font"
             android:gravity="center"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView25"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="15sp"
             android:fontFamily="@font/font"
             android:text="오프라인 스터디 장소"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="209dp"
-        android:layout_height="371dp"
+        android:id="@+id/study_room_menu_fine_recyclerView"
+        android:layout_width="190dp"
+        android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recyclerView" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/study_room_menu_member_recyclerView" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/study_room_menu_fineCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/font"
         android:text="벌금 이벤트 사용하기"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout20" />
+        app:layout_constraintTop_toBottomOf="@+id/study_room_menu_mission_cons" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/study_room_menu_fine_const"
@@ -103,10 +102,10 @@
         android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox">
+        app:layout_constraintTop_toBottomOf="@+id/study_room_menu_fineCheckBox">
 
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/study_room_menu_fineTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font"
@@ -117,15 +116,15 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView28"
+            android:id="@+id/study_room_menu_fine"
             android:layout_width="wrap_content"
-            android:fontFamily="@font/font"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/font"
             android:text="벌금단위"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/study_room_menu_fineTitle"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -140,5 +139,81 @@
         android:text="스터디에 친구초대"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/study_room_menu_mission_cons"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout20">
+
+        <TextView
+            android:id="@+id/study_room_menu_missionTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font"
+            android:text="MIssion!"
+            android:gravity="center"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/study_room_menu_missionText"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font"
+            android:gravity="center"
+            android:text="미션: "
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/study_room_menu_missionText2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/study_room_menu_missionText2" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font"
+            android:gravity="center"
+            android:text="보상: "
+            app:layout_constraintBottom_toBottomOf="@+id/study_room_menu_missionReword2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/study_room_menu_missionReword2"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/study_room_menu_missionText2"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/font"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/study_room_menu_missionText"
+            app:layout_constraintTop_toBottomOf="@+id/study_room_menu_missionTitle" />
+
+        <TextView
+            android:id="@+id/study_room_menu_missionReword2"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView29"
+            app:layout_constraintTop_toBottomOf="@+id/study_room_menu_missionText2"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

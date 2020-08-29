@@ -57,6 +57,7 @@ public class createStudyActivity extends Activity {
     String split;
     boolean userWrite = false;
     String getMission;
+    String getReword;
     String studyroom_password;
     String writeNumber;
     String studyHostUid;
@@ -352,16 +353,24 @@ public class createStudyActivity extends Activity {
                         @Override
                         public void onClick(View view) {
                             EditText mission = (EditText) dialog2.findViewById(R.id.mission_missionText);
+                            EditText reword = (EditText) dialog2.findViewById(R.id.mission_rewordText);
+
                             if(mission.getText().toString().length() <= 0)
                             {
-                                Toast.makeText(getApplicationContext(), "미션을 설정하지 않으셨습니다!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "미션을 입력하지 않으셨습니다!", Toast.LENGTH_SHORT).show();
+                                return;
                             }
-                            else
+
+                            if(reword.getText().toString().length() <= 0)
                             {
-                                getMission = mission.getText().toString();
-                                missionCheckBox.setChecked(true);
-                                dialog2.dismiss();
+                                Toast.makeText(getApplicationContext(), "미션 보상을 입력하지 않으셨습니다!", Toast.LENGTH_SHORT).show();
+                                return;
                             }
+
+                            getMission = mission.getText().toString();
+                            getReword = reword.getText().toString();
+                            missionCheckBox.setChecked(true);
+                            dialog2.dismiss();
                         }
                     });
                     dialog2.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
@@ -469,6 +478,7 @@ public class createStudyActivity extends Activity {
                 if(missionCheckBox.isChecked())
                 {
                     studyModel.missionText = getMission;
+                    studyModel.setMissionReword(getReword);
                 }
                 studyModel.isPush = pushCheckBox.isChecked();
 
@@ -489,6 +499,9 @@ public class createStudyActivity extends Activity {
                     studyModel.place_address = placeaddress;
                 }
 
+                studyModel.setUseFine(false);
+                studyModel.firstFineCheck = true;
+
                 String stStudyName = studyName.getText().toString();
                 String studyName_createTime = stStudyName + " " + getToDay();
 
@@ -500,7 +513,8 @@ public class createStudyActivity extends Activity {
                 //taskMap.put("host", studyHostUid);
                 StudyUsers studyUsers = new StudyUsers();
                 studyUsers.user = studyHostUid;
-                FirebaseDatabase.getInstance().getReference().child("allStudy").child(studyName_createTime).child("studyUsers").push().setValue(studyUsers);
+                studyUsers.totalFine = "0";
+                FirebaseDatabase.getInstance().getReference().child("allStudy").child(studyName_createTime).child("studyUsers").child(studyHostUid).setValue(studyUsers);
 
 
                 placearea = "";

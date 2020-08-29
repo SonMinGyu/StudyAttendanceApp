@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/item_fine_history_fineDay"
+        android:fontFamily="@font/font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text ="벌금 추가 날짜"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:ems="15"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/item_fine_history_fineReason"
+        android:fontFamily="@font/font"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:text ="벌금 내역"
+        android:ems="15"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+</LinearLayout>

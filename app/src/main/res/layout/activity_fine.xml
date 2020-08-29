@@ -14,35 +14,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="미션을 입력하세요"
+        android:text="벌금 부과항목을 입력하세요"
         android:textSize="23dp" />
 
     <EditText
-        android:id="@+id/mission_missionText"
+        android:id="@+id/fine_fineTitleText"
         android:fontFamily="@font/font"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:hint="ex) 출석 1등 가장많이하기!"
+        android:hint="ex) 지각 혹은 결석 했을시"
         android:ems="15"
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/reword_textView"
+        android:id="@+id/text"
         android:fontFamily="@font/font"
         android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="미션 보상을 입력하세요"
+        android:text="벌금 단위를 입력하세요"
         android:textSize="23dp" />
 
     <EditText
-        android:id="@+id/mission_rewordText"
+        android:id="@+id/fine_fineText"
         android:fontFamily="@font/font"
         android:layout_width="match_parent"
-        android:hint="ex) 스터디 마지막 날에 커피한잔 사주기"
+        android:hint="ex) 1000 (벌금의 단위는 원 입니다.)"
         android:layout_height="60dp"
         android:ems="15"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
 
 </LinearLayout>
