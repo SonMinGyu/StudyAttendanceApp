@@ -11,6 +11,9 @@ import fragment.countdownFragment;
 import fragment.studyFragment;
 import fragment.timerFragment;
 
+import static fragment.countdownFragment.isCountStart;
+import static fragment.countdownFragment.myTimer;
+
 public class TimerActivity extends AppCompatActivity {
 
     Button timer_button;
@@ -50,5 +53,14 @@ public class TimerActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onBackPressed() {
+        if(isCountStart) {
+            myTimer.cancel();
+            isCountStart = false;
+        }
+
+        super.onBackPressed();
     }
 }

@@ -62,11 +62,11 @@ public class countdownFragment extends Fragment {
 
     private static final String TAG = "mainmainmain";
 
-    MyTimer myTimer;
+    public static MyTimer myTimer;
     Button startButton;
     Button stopButton;
     Button resetButton;
-    boolean isCountStart = false;
+    public static boolean isCountStart = false;
     boolean canReset = false;
     int time;
     TextView hourText;
@@ -461,7 +461,7 @@ public class countdownFragment extends Fragment {
         }
     }
 
-    class MyTimer extends CountDownTimer
+    public class MyTimer extends CountDownTimer
     {
         public MyTimer(long millisInFuture, long countDownInterval)
         {
@@ -628,7 +628,7 @@ public class countdownFragment extends Fragment {
         int int_second = 0;
         try{
             int_hour = Integer.parseInt(hour);
-            throw new Exception(); //강제 에러 출력
+            //throw new Exception(); //강제 에러 출력
         }catch (Exception e){
             //에러시 수행
             e.printStackTrace(); //오류 출력(방법은 여러가지)
@@ -636,7 +636,7 @@ public class countdownFragment extends Fragment {
 
         try{
             int_minute = Integer.parseInt(minute);
-            throw new Exception(); //강제 에러 출력
+            //throw new Exception(); //강제 에러 출력
         }catch (Exception e){
             //에러시 수행
             e.printStackTrace(); //오류 출력(방법은 여러가지)
@@ -644,7 +644,7 @@ public class countdownFragment extends Fragment {
 
         try{
             int_second = Integer.parseInt(second);
-            throw new Exception(); //강제 에러 출력
+            //throw new Exception(); //강제 에러 출력
         }catch (Exception e){
             //에러시 수행
             e.printStackTrace(); //오류 출력(방법은 여러가지)
@@ -654,4 +654,5 @@ public class countdownFragment extends Fragment {
 
         return millisTime;
     }
+
 }

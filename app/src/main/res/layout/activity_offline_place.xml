@@ -24,7 +24,7 @@
     <EditText
         android:id="@+id/offline_place_place_area"
         android:fontFamily="@font/font"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:ems="10"
@@ -106,7 +106,7 @@
     <TextView
         android:id="@+id/textView17"
         android:fontFamily="@font/font"
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
@@ -146,10 +146,11 @@
 
     <Button
         android:id="@+id/ok_button"
-        android:fontFamily="@font/font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/font"
         android:text="확인"
+        app:layout_constraintBottom_toBottomOf="@+id/cancel_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cancel_button"
         app:layout_constraintTop_toTopOf="@+id/cancel_button" />

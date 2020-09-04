@@ -46,13 +46,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText idText;
     private EditText passwordText;
     private boolean phpLoginSuccess = false;
-    private CheckBox autoLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        autoLogin = (CheckBox) findViewById(R.id.autoLoginCheckBox);
 
         auth = FirebaseAuth.getInstance();
 
@@ -94,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //auth.signOut(); // 자동로그인
+
         // statusBar 색깔적용을 위한 remoteConfig
         fFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         String splash_background = fFirebaseRemoteConfig.getString(getString(R.string.rc_color));

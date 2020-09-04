@@ -16,7 +16,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout15"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,17 +24,20 @@
 
             <TextView
                 android:id="@+id/item_countdown_second"
-                android:fontFamily="@font/font"
                 android:layout_width="90dp"
                 android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:ems="10"
+                android:fontFamily="@font/font"
                 android:gravity="center"
                 android:hint="00"
                 android:inputType="number"
                 android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView21"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toStartOf="@+id/item_countdown_secondtext"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/item_countdown_secondtext"
@@ -50,7 +53,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_countdown_conslay2"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/constraintLayout15"
@@ -59,23 +62,26 @@
 
             <TextView
                 android:id="@+id/item_countdown_minute"
-                android:fontFamily="@font/font"
                 android:layout_width="90dp"
                 android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:ems="10"
+                android:fontFamily="@font/font"
                 android:gravity="center"
                 android:hint="00"
                 android:inputType="number"
                 android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView20"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toStartOf="@+id/item_countdown_minutetext"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/item_countdown_minutetext"
-                android:fontFamily="@font/font"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:fontFamily="@font/font"
                 android:gravity="center"
                 android:text="분"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +91,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout17"
-            android:layout_width="140dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,9 +99,9 @@
 
             <TextView
                 android:id="@+id/item_countdown_hourtext"
-                android:fontFamily="@font/font"
                 android:layout_width="40dp"
                 android:layout_height="50dp"
+                android:fontFamily="@font/font"
                 android:gravity="center"
                 android:text="시간"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -104,17 +110,20 @@
 
             <TextView
                 android:id="@+id/item_countdown_hour"
-                android:fontFamily="@font/font"
                 android:layout_width="90dp"
                 android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:ems="10"
+                android:fontFamily="@font/font"
                 android:gravity="center"
                 android:hint="00"
                 android:inputType="number"
                 android:textSize="40sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView19"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toStartOf="@+id/item_countdown_hourtext"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

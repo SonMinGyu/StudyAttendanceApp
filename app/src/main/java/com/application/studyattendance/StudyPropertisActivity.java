@@ -36,7 +36,6 @@ import java.util.List;
 
 public class StudyPropertisActivity extends Activity {
 
-
     private static final String TAG = "mainmainmain";
     private List<StudyModel> studyModels = new ArrayList<>();
     private List<StudyUsers> studyUsers = new ArrayList<>();

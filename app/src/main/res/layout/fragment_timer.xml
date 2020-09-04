@@ -34,9 +34,13 @@
         android:layout_alignTop="@+id/fragment_timer_startAndRestartButton"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginStart="71dp"
+        android:layout_marginLeft="71dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="70dp"
         android:layout_marginRight="70dp"
+        android:layout_toEndOf="@+id/fragment_timer_startAndRestartButton"
+        android:layout_toRightOf="@+id/fragment_timer_startAndRestartButton"
         android:text="Reset" />
 
     <androidx.recyclerview.widget.RecyclerView

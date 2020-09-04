@@ -22,7 +22,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/study_room_menu_member_recyclerView"
-        android:layout_width="190dp"
+        android:layout_width="wrap_content"
         android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/study_room_menu_fine_recyclerView"
@@ -77,7 +77,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/study_room_menu_fine_recyclerView"
-        android:layout_width="190dp"
+        android:layout_width="wrap_content"
         android:layout_height="350dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,7 +129,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/study_room_menu_inviteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -142,10 +142,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/study_room_menu_mission_cons"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,8 +155,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font"
-            android:text="MIssion!"
             android:gravity="center"
+            android:text="MIssion!"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +172,8 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/study_room_menu_missionText2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/study_room_menu_missionText2" />
+            app:layout_constraintTop_toTopOf="@+id/study_room_menu_missionText2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/textView29"
@@ -189,20 +189,21 @@
 
         <TextView
             android:id="@+id/study_room_menu_missionText2"
-            android:layout_width="260dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/font"
             android:gravity="center"
             android:text="TextView"
             android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/study_room_menu_missionText"
             app:layout_constraintTop_toBottomOf="@+id/study_room_menu_missionTitle" />
 
         <TextView
             android:id="@+id/study_room_menu_missionReword2"
-            android:layout_width="260dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font"
             android:gravity="center"

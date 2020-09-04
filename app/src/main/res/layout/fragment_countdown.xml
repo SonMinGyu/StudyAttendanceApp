@@ -22,7 +22,7 @@
             android:layout_height="200dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="140dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/constraintLayout14"
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/fragment_countdown_texthour"
                     android:fontFamily="@font/font"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
@@ -44,21 +44,23 @@
                     android:id="@+id/countdown_hour_text"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
-                    android:fontFamily="@font/font"
-                    android:ems="10"
-                    android:gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:background="@null"
-                    android:textSize="40sp"
-                    android:inputType="number"
+                    android:ems="10"
+                    android:fontFamily="@font/font"
+                    android:gravity="center"
                     android:hint="00"
+                    android:inputType="number"
+                    android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView19"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_countdown_texthour"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout14"
-                android:layout_width="140dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -69,19 +71,21 @@
                     android:id="@+id/countdown_minute_text"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
-                    android:fontFamily="@font/font"
-                    android:ems="10"
-                    android:gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:background="@null"
-                    android:textSize="40sp"
-                    android:inputType="number"
+                    android:ems="10"
+                    android:fontFamily="@font/font"
+                    android:gravity="center"
                     android:hint="00"
+                    android:inputType="number"
+                    android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView20"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_countdown_textminute"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/fragment_countdown_textminute"
                     android:fontFamily="@font/font"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
@@ -93,7 +97,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="140dp"
+                android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,19 +108,21 @@
                     android:id="@+id/countdown_second_text"
                     android:layout_width="90dp"
                     android:layout_height="50dp"
-                    android:fontFamily="@font/font"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:background="@null"
-                    android:textSize="40sp"
                     android:ems="10"
+                    android:fontFamily="@font/font"
                     android:gravity="center"
-                    android:inputType="number"
                     android:hint="00"
+                    android:inputType="number"
+                    android:textSize="40sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView21"
+                    app:layout_constraintEnd_toStartOf="@+id/fragment_countdown_textsecond"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/fragment_countdown_textsecond"
                     android:fontFamily="@font/font"
                     android:layout_width="40dp"
                     android:layout_height="50dp"
@@ -165,14 +171,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fragment_countdown_recyclerview"
-                android:layout_width="409dp"
+                android:layout_width="match_parent"
                 android:layout_height="273dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout16"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="380dp"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_marginBottom="12dp"
                 app:layout_constraintBottom_toTopOf="@+id/fragment_countdown_recyclerview"
@@ -204,12 +210,13 @@
                     android:textSize="13sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fragment_countdown_memotext"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout16"
-                android:layout_width="409dp"
+                android:layout_width="match_parent"
                 android:layout_height="54dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

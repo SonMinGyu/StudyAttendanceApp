@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:hint="ex) 출석 1등 가장많이하기!"
+        android:textSize="15sp"
         android:ems="15"
         android:inputType="textPersonName" />
 
@@ -41,6 +42,7 @@
         android:fontFamily="@font/font"
         android:layout_width="match_parent"
         android:hint="ex) 스터디 마지막 날에 커피한잔 사주기"
+        android:textSize="15sp"
         android:layout_height="60dp"
         android:ems="15"
         android:inputType="textPersonName" />

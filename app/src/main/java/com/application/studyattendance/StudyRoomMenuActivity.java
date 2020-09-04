@@ -42,6 +42,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.kakao.kakaolink.v2.KakaoLinkResponse;
+import com.kakao.kakaolink.v2.KakaoLinkService;
+import com.kakao.message.template.ButtonObject;
+import com.kakao.message.template.ContentObject;
+import com.kakao.message.template.FeedTemplate;
+import com.kakao.message.template.LinkObject;
+import com.kakao.message.template.SocialObject;
+import com.kakao.network.ErrorResult;
+import com.kakao.network.callback.ResponseCallback;
+import com.kakao.util.KakaoParameterException;
+import com.kakao.util.helper.log.Logger;
 
 import org.w3c.dom.Text;
 
@@ -71,6 +82,7 @@ public class StudyRoomMenuActivity extends Activity {
     List<StudyUsers> studyUsers2 = new ArrayList<>();
     int bringFineUnit;
     String giveUid;
+    Button inviteButton;
 
     private RecyclerView usersRecyclerView;
     private RecyclerView fineRecyclerView;
@@ -90,6 +102,7 @@ public class StudyRoomMenuActivity extends Activity {
         menuFineTitle = (TextView) findViewById(R.id.study_room_menu_fineTitle);
         menuFine = (TextView) findViewById(R.id.study_room_menu_fine);
         fineConst = (ConstraintLayout) findViewById(R.id.study_room_menu_fine_const);
+        inviteButton = (Button) findViewById(R.id.study_room_menu_inviteButton);
 
         this.getWindow().getAttributes().windowAnimations = R.style.MyDialog;
 
@@ -205,7 +218,7 @@ public class StudyRoomMenuActivity extends Activity {
                     fineConst.setVisibility(View.VISIBLE);
                     try {
                         menuFineTitle.setText(menuStudyModel.getFine_title());
-                        menuFine.setText(menuStudyModel.getFine());
+                        menuFine.setText(menuStudyModel.getFine() + "원");
                     } catch (Exception e) {
 
                     }
@@ -268,7 +281,7 @@ public class StudyRoomMenuActivity extends Activity {
                                                     .updateChildren(taskMap);
 
                                             menuFineTitle.setText(fineTitle.getText().toString());
-                                            menuFine.setText(fine.getText().toString());
+                                            menuFine.setText(fine.getText().toString() + "원");
 
                                             fineCheckBox.setChecked(true);
                                             fineConst.setVisibility(View.VISIBLE);
@@ -351,6 +364,13 @@ public class StudyRoomMenuActivity extends Activity {
             }
         });
 
+        inviteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                kakaolink();
+            }
+        });
+
     }
 
     class FineRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
@@ -427,6 +447,12 @@ public class StudyRoomMenuActivity extends Activity {
                 plusButton2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if(!isHost)
+                        {
+                            Toast.makeText(getApplicationContext(), "벌금 관리는 스터디 호스트만 가능합니다!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
                         final LinearLayout plusFine = (LinearLayout) View.inflate(StudyRoomMenuActivity.this, R.layout.activity_plus_fine, null);
                         final AlertDialog.Builder customDialog = new AlertDialog.Builder(StudyRoomMenuActivity.this);
                         customDialog.setView(plusFine)
@@ -485,26 +511,31 @@ public class StudyRoomMenuActivity extends Activity {
                     }
                 });
 
-                /* //  리사이클러뷰 클릭하면 유저정보 보여줄까???
-                view.setOnClickListener(new View.OnClickListener() {
+                minusButton2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        int position = getAdapterPosition();
-                        if(position != RecyclerView.NO_POSITION)
+                        if(!isHost)
                         {
-                            String studyKey = keyList.get(position);
-                            Log.d(TAG, keyList.get(position));
-                            Intent intent = new Intent(getActivity(), StudyRoomActivity.class);
-                            intent.putExtra("studykey", studyKey);
-                            getActivity().startActivity(intent);
-                            //Toast.makeText(getContext(),"클릭",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "벌금 관리는 스터디 호스트만 가능합니다!", Toast.LENGTH_SHORT).show();
+                            return;
                         }
 
+                        if(studyMenuStudyUsers2.get(getAdapterPosition()).totalFine.equals("0"))
+                        {
+                            Toast.makeText(getApplicationContext(), "줄일 벌금이 없습니다!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+
+                        int currentFine = Integer.parseInt(studyMenuStudyUsers2.get(getAdapterPosition()).totalFine);
+                        currentFine -= bringFineUnit;
+                        final Map<String, Object> taskMap = new HashMap<String, Object>();
+                        taskMap.put("totalFine", Integer.toString(currentFine));
+
+                        FirebaseDatabase.getInstance().getReference().child("allStudy").child(getIntent().getExtras().getString("study"))
+                                .child("studyUsers").child(studyMenuStudyUsers2.get(getAdapterPosition()).user)
+                                .updateChildren(taskMap);
                     }
                 });
-
-                 */
-
             }
         }
     }
@@ -659,5 +690,53 @@ public class StudyRoomMenuActivity extends Activity {
             return false;
         }
         return true;
+    }
+
+    public void kakaolink() {
+        String sendUserUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String sendUserName = null;
+        for(int i = 0; i < userModels.size(); i++)
+        {
+            if(userModels.get(i).userUid.equals(sendUserUid))
+            {
+                sendUserName = userModels.get(i).userName;
+            }
+        }
+
+        String sendStudyName = menuStudyModel.studyName;
+
+        FeedTemplate params = FeedTemplate
+                .newBuilder(ContentObject.newBuilder("어플 사진",
+                        "http://mud-kage.kakao.co.kr/dn/NTmhS/btqfEUdFAUf/FjKzkZsnoeE4o19klTOVI1/openlink_640x640s.jpg",
+                        LinkObject.newBuilder().setWebUrl("https://developers.kakao.com")
+                                .setMobileWebUrl("https://developers.kakao.com").build())
+                        .setDescrption(sendUserName + " 님이 " + sendStudyName + " 스터디에 초대하셨습니다!")
+                        .build())
+                //.setSocial(SocialObject.newBuilder().setLikeCount(10).setCommentCount(20)
+                //        .setSharedCount(30).setViewCount(40).build())
+                //.addButton(new ButtonObject("웹에서 보기", LinkObject.newBuilder().setWebUrl("'https://developers.kakao.com").setMobileWebUrl("'https://developers.kakao.com").build()))
+                .addButton(new ButtonObject("앱으로 가기", LinkObject.newBuilder()
+                        .setWebUrl("'https://developers.kakao.com")
+                        .setMobileWebUrl("'https://developers.kakao.com")
+                        .setAndroidExecutionParams("key1=value1")
+                        .setIosExecutionParams("key1=value1")
+                        .build()))
+                .build();
+
+        Map<String, String> serverCallbackArgs = new HashMap<String, String>();
+        serverCallbackArgs.put("user_id", "${current_user_id}");
+        serverCallbackArgs.put("product_id", "${shared_product_id}");
+
+        KakaoLinkService.getInstance().sendDefault(this, params, serverCallbackArgs, new ResponseCallback<KakaoLinkResponse>() {
+            @Override
+            public void onFailure(ErrorResult errorResult) {
+                Logger.e(errorResult.toString());
+            }
+
+            @Override
+            public void onSuccess(KakaoLinkResponse result) {
+                // 템플릿 밸리데이션과 쿼터 체크가 성공적으로 끝남. 톡에서 정상적으로 보내졌는지 보장은 할 수 없다. 전송 성공 유무는 서버콜백 기능을 이용하여야 한다.
+            }
+        });
     }
 }

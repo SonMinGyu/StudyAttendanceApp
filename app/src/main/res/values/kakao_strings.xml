@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 카카오 디벨로퍼 앱 만들기에서 네이티브 키를 입력해주시면 됩니다. -->
+    <string name="kakao_app_key">da82fa3001c50b56df1c247e0f05f3d0</string>
+    <string name="kakao_scheme">kakaoda82fa3001c50b56df1c247e0f05f3d0</string>
+    <string name="kakaolink_host">kakaolink</string>
+</resources>
